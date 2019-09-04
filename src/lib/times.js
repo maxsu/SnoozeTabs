@@ -9,6 +9,7 @@ export {NEXT_OPEN, PICK_TIME};
 
 export const times = [
   {id: 'later', icon: 'later_today.svg', title: browser.i18n.getMessage('timeLaterToday')},
+  {id: 'evening', icon: 'this_evening.svg', title: browser.i18n.getMessage('timeEvening')},
   {id: 'tomorrow', icon: 'tomorrow.svg', title: browser.i18n.getMessage('timeTomorrow')},
   {id: 'weekend', icon: 'weekends.svg', title: browser.i18n.getMessage('timeThisWeekend')},
   {id: 'week', icon: 'next_week.svg', title: browser.i18n.getMessage('timeNextWeek')},
@@ -31,6 +32,10 @@ export function timeForId(time, id) {
       break;
     case 'later':
       rv = rv.add(3, 'hours').minute(0);
+      text = getLocalizedDateTime(rv, 'short_time_no_minutes');
+      break;
+    case 'evening':
+      rv = rv.hour(18);
       text = getLocalizedDateTime(rv, 'short_time_no_minutes');
       break;
     case 'tomorrow':
